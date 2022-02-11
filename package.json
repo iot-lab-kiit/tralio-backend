@@ -1,0 +1,15 @@
+{
+  "name": "tralio-backend",
+  "version": "1.0.0",
+  "description": "Back-end of tralio project",
+  "main": "server.js",
+  "repository": "https://github.com/saketharshraj/tralio-back-end.git",
+  "author": "IoT Back-end Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
