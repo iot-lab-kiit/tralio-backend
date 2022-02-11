@@ -12,11 +12,11 @@ const port = process.env.PORT || 8000;
 connectDB(process.env.MONGO_URI);
 
 app.get("/", (req, res) => {
-  res.send('You have reached the server');
+  res.send("You have reached the server");
 });
 
-app.get('/test', (req, res) => {
-  res.send('API is working');
+app.get("/test", (req, res) => {
+  res.send("API is working");
 });
 
 app.listen(port, () => console.log(`Server is listening on port ${port}...`));
