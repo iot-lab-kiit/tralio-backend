@@ -11,9 +11,9 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    description: {
+    content: {
       type: String,
-      required: [true, "Please Provide a description"],
+      required: [true, "Please Provide Content"],
     },
     likesCount: {
       type: Number,
@@ -28,9 +28,12 @@ const postSchema = new mongoose.Schema(
     comments: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "comment",
+        ref: "Comments",
       },
     ],
+    slug: {
+      type: String,
+    },
   },
   { timestamps: true }
 );
