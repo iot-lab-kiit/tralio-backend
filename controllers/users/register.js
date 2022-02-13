@@ -5,9 +5,7 @@ const createJWT = require("../../helpers/jwtHandler")
 
 const register = async (req, res) => {
   const { username, userEmail } = req.body;
-  const userPayload = req.body;
-  const testB = userPayload.password;
-  
+  const userPayload = req.body; 
 
   if (!username || !userEmail) {
     res.status(400).json({
@@ -49,6 +47,4 @@ const register = async (req, res) => {
   });
 };
 
-module.exports = {
-  register,
-};
+module.exports = {register};
