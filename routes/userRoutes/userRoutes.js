@@ -4,7 +4,9 @@ const UserController = require("../../controllers/users/userController");
 const User = require("../../models/user/userSchema");
 
 
-routes.post("/register", UserController.register);
+routes.post("/register", UserController.register, (err) => {
+    console.log("Error in creating user : ", err);
+});
 
 
 module.exports = routes;
