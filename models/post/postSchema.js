@@ -2,18 +2,21 @@ const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema(
   {
-    postedBy: {
-      type: mongoose.Types.ObjectId,
-      ref: "User",
-      required: [true, "Please Provide Which User Posted This Post"],
+    slug: {
+      type: String,
+      required: [true, "slug missing"],
     },
     title: {
       type: String,
-      required: true,
+      required: [true, "title missing"],
+    },
+    caption: {
+      type: String,
+      required: false,
     },
     content: {
       type: String,
-      required: [true, "Please Provide Content"],
+      required: [true, "Content missing"],
     },
     likesCount: {
       type: Number,
@@ -31,8 +34,11 @@ const postSchema = new mongoose.Schema(
         ref: "Comments",
       },
     ],
-    slug: {
-      type: String,
+    
+    postedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: [true, "Author missing"],
     },
   },
   { timestamps: true }

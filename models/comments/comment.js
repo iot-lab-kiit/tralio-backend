@@ -6,14 +6,19 @@ const commentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Post",
     },
+    content: {
+      type: String,
+      default: "",
+    },
+    replies: {
+      type: String,
+      default: "",
+      required: false
+    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: [true, "Please Provide User"],
-    },
-    content: {
-      type: String,
-      default: "",
     },
   },
   { timestamps: true }
