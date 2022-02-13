@@ -3,43 +3,36 @@ const mongoose = require("mongoose");
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: [true, "Please Provide a Username"],
+    required: [true, "Username Missing"],
   },
   firstname: {
     type: String,
-    required: [true, "Please Provide a First Name"],
+    required: [true, "First Name Missing"],
   },
   lastname: {
     type: String,
-    required: [true, "Please Provide a Last Name"],
+    required: [true, "Last Name Missing"],
   },
   userEmail: {
     type: String,
-    required: [true, "Pleade Provide an email"],
+    required: [true, "Email Missing"],
   },
   password: {
     type: String,
-    required: [true, "Please Provide a password"],
+    required: [true, "Password Misssing"],
     minlength: 6,
   },
-  userPosts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Post",
-    },
-  ],
-  likedPosts: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Post",
-    },
-  ],
-  comments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Comments",
-    },
-  ],
+  userDOB: {
+    type: String,
+  },
+  userGender: {
+    type: String,
+    required: [true, "Gender Missing"],
+  },
+  userCountry: {
+    type: String,
+  },
+  
 });
 
 const User = mongoose.model("User", userSchema);
