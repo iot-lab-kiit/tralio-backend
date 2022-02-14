@@ -1,5 +1,4 @@
 const User = require("../../models/user/userSchema");
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const createJWT = require("../../helpers/jwtHandler")
 
@@ -24,7 +23,7 @@ const register = async (req, res) => {
       });
     } else {
       const salt = await bcrypt.genSalt(10);
-      userPayload.password = await bcrypt.hash(userPayload.password, salt);
+      userPayload.userPassword = await bcrypt.hash(userPayload.userPassword, salt);
       const newUser = new User(userPayload);
       newUser
         .save()

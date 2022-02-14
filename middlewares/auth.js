@@ -12,7 +12,6 @@ const authenticator = (req, res, next) => {
       const payload = jwt.verify(bearerToken, process.env.SECRET_KEY);
       req.user = {
         userId: payload._id,
-        name: payload.name,
         email: payload.email,
       };
       next();
