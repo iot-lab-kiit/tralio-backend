@@ -1,8 +1,17 @@
 const express = require("express");
 const routes = express.Router();
-const { login, register } = require("../../controllers/users/register");
+const UserController = require("../../controllers/users/userController");
+const User = require("../../models/user/userSchema");
 
-routes.post("/register", register);
-routes.post("/login", login);
+
+routes.post("/register", UserController.register, (err) => {
+    console.log("Error in creating user : ", err);
+});
+
+// ToDo : change this from GET to POST
+routes.get("/login", UserController.login, (err) => {
+    console.log("Login error")
+})
+
 
 module.exports = routes;
