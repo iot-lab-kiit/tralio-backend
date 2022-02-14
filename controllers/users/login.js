@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../../models/user/userSchema");
-const createJWT = require("../../helpers/jwtHandler");
+const createJWT = require("../../helpers/createJWT");
 
 const login = async (req, res) => {
   const { username, userEmail, userPassword } = req.body;
@@ -27,4 +27,9 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { login };
+const refreshJWT = async(req, res) => {
+  const token = createJWT(req.body)
+  res.status(200).json({token:token, user:req.body})
+}
+
+module.exports = { login, refreshJWT };

@@ -10,7 +10,10 @@ routes.post("/register", UserController.register, (err) => {
 
 routes.post("/login", UserController.login, (err) => {
     console.log("Login error")
-})
+});
 
+routes.post("/refresh-token", UserController.refreshJWT, (err) => {
+    console.log("Token Refresh Error")
+});
 
 module.exports = routes;

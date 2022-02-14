@@ -1,6 +1,6 @@
 const User = require("../../models/user/userSchema");
 const bcrypt = require("bcrypt");
-const createJWT = require("../../helpers/jwtHandler")
+const createJWT = require("../../helpers/createJWT")
 
 const register = async (req, res) => {
   const { username, userEmail } = req.body;
