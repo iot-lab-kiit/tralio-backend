@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Email Missing"],
   },
-  password: {
+  userPassword: {
     type: String,
     required: [true, "Password Misssing"],
     minlength: 6,

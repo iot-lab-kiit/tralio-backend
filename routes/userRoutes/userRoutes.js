@@ -8,8 +8,7 @@ routes.post("/register", UserController.register, (err) => {
     console.log("Error in creating user : ", err);
 });
 
-// ToDo : change this from GET to POST
-routes.get("/login", UserController.login, (err) => {
+routes.post("/login", UserController.login, (err) => {
     console.log("Login error")
 })
 
