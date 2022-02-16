@@ -16,4 +16,8 @@ routes.post("/refresh-token", UserController.refreshJWT, (err) => {
     console.log("Token Refresh Error")
 });
 
+routes.get("/:id", UserController.userById, (err)=>{
+    console.log("Errorrrr")
+})
+
 module.exports = routes;
