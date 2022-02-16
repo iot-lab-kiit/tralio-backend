@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./db/connectDB");
 const userRoutes = require("./routes/userRoutes/userRoutes")
+const errorHandler = require("./error/errorHandler");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors());
 const port = process.env.PORT || 8000;
 
 app.use("/api/v1/user", userRoutes);
+app.use(errorHandler);
 
 connectDB(process.env.MONGO_URI);
 
