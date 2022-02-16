@@ -18,6 +18,9 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: [true, "Content missing"],
     },
+    username :{
+      type : String
+    },
     likesCount: {
       type: Number,
       default: 0,
@@ -33,12 +36,10 @@ const postSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comments",
       },
-    ],
-    
+    ], 
     postedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: [true, "Author missing"],
     },
   },
   { timestamps: true }
