@@ -1,7 +1,8 @@
 const Post = require("../../models/post/postSchema");
 const User = require("../../models/user/userSchema");
+const ApiError = require("../../error/ApiError");
 
-const create_post = async (req, res) => {
+const create_post = async (req, res, next) => {
   try {
     const { slug, title, content, username } = req.body;
     const postPayload = req.body;
@@ -10,9 +11,7 @@ const create_post = async (req, res) => {
     if (foundUser) {
       postPayload.postedBy = foundUser._id;
       if (!slug || !title || !content) {
-        return res.status(400).json({
-          error: "missing required content",
-        });
+        return next(ApiError.badRequest("missing required content"));
       } else {
         const newPost = await new Post(postPayload);
         newPost.save().then((post) => {
@@ -23,14 +22,10 @@ const create_post = async (req, res) => {
         });
       }
     } else {
-      res.status(404).json({
-        message: "User not found",
-      });
+      return next(ApiError.notFound("User not found"));
     }
   } catch (error) {
-    res.status(500).json({
-      error: error,
-    });
+    return next(ApiError.internalServerError(error.message));
   }
 };
 
