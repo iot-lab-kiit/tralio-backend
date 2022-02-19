@@ -9,7 +9,7 @@ routes.post(
   validateCreateUserPayload,
   UserController.register,
   (err) => {
-    console.log("Error in creating user : ", err);
+    console.log("Error in creating user");
   }
 );
 

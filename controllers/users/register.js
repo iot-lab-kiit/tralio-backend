@@ -19,7 +19,13 @@ const register = async (req, res, next) => {
         token: token,
       });
     })
-    .catch(() => {
+    .catch((err) => {
+
+      // Below check avoids the error when two user trying to get same username at same time
+      if (err.code === 11000) {
+        next(ApiError.conflict("User already exists. This occured because multiple users are trying to register with same username at same time"));
+        return;
+      }
       next(ApiError.failedDependency("Error while creating user"));
       return;
     });
