@@ -4,6 +4,7 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
     required: [true, "Username Missing"],
+    index: {unique: true, dropDups: true}
   },
   firstname: {
     type: String,
@@ -16,6 +17,7 @@ const userSchema = new mongoose.Schema({
   userEmail: {
     type: String,
     required: [true, "Email Missing"],
+    index: {unique: true, dropDups: true}
   },
   userPassword: {
     type: String,
