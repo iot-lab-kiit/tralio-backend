@@ -1,6 +1,5 @@
 const User = require("../../models/user/userSchema");
 const userActivitySchema = require("../../models/user/userActivities");
-const createJWT = require("../../helpers/createJWT");
 
 const getAllUser = async (req, res) => 
 {
