@@ -1,4 +1,5 @@
 const Post = require("../../models/post/postSchema")
+const errorHandler= require("../../error/errorHandler")
 
 
 const getAllPost = async (req, res) => {
