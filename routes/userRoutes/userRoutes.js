@@ -25,4 +25,6 @@ routes.get("/:id", UserController.userById, (err) => {
   console.log("Errorrrr");
 });
 
+routes.delete("/:id", UserController.deleteUser);
+
 module.exports = routes;
