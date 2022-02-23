@@ -7,7 +7,7 @@ const deleteUser = async (req, res) => {
     const user = await User.findByIdAndDelete({ userId });
     if (!user) {
       next(ApiError.badRequest(`No User with id ${userId} exists`));
-      next();
+      return;
     }
     res.status(200).json({ message: "User deleted successfully", user: user });
   } catch (err) {
