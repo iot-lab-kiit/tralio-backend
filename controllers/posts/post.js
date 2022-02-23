@@ -21,7 +21,6 @@ const createPost = async (req, res, next) => {
             post: post,
           });
         });
-        next();
       }
     } else {
       next(ApiError.notFound("User not found"));
@@ -31,6 +30,7 @@ const createPost = async (req, res, next) => {
     next(ApiError.internalServerError("Database query error"));
     return;
   }
+  next();
 };
 
 module.exports = createPost;
