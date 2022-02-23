@@ -16,7 +16,7 @@ const createPost = async (req, res, next) => {
       } else {
         const newPost = await new Post(postPayload);
         newPost.save().then((post) => {
-          return res.status(200).json({
+          res.status(200).json({
             message: "Post create sucessfully",
             post: post,
           });
@@ -24,10 +24,12 @@ const createPost = async (req, res, next) => {
         next();
       }
     } else {
-      return next(ApiError.notFound("User not found"));
+      next(ApiError.notFound("User not found"));
+      return;
     }
   } catch (err) {
-    return next(ApiError.internalServerError("Database query error"));
+    next(ApiError.internalServerError("Database query error"));
+    return;
   }
 };
 
