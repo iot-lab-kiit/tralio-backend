@@ -1,17 +1,16 @@
 const User = require("../../models/user/userSchema");
-const userActivitySchema = require("../../models/user/userActivities");
 const ApiError = require("../../error/ApiError");
 
-const getAllUser = async (req, res, next) => {
+const getAllUser = async (_, res, next) => {
   try {
     let allUser = await User.find({});
     if (!allUser) {
       next(ApiError.notFound("User not found"));
       return;
     }
-    res.status(200).json({ message: "Sent all the available Users.", users: allUser });
+    res.status(200);
   } catch (err) {
-    next(ApiError.internalServerError("Error in searching for user"));
+    next(ApiError.internalServerError("Database Query Error."));
   }
   next();
 };
