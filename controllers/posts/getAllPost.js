@@ -6,10 +6,11 @@ const getAllPost = async (_, res, next) => {
     const allPost = await Post.find({});
     if (!allPost) {
       next(ApiError.notFound("Post not found"));
+      return;
     }
     res.status(200).json({ allPost: allPost });
   } catch (err) {
-    next(ApiError.internalServerError("Error in searching for user"));
+    next(ApiError.internalServerError("Database Query Error."));
   }
   next();
 };

@@ -1,6 +1,4 @@
 const User = require("../../models/user/userSchema");
-const userActivitySchema = require("../../models/user/userActivities");
-const createJWT = require("../../helpers/createJWT");
 const ApiError = require("../../error/ApiError");
 
 const userById = async (req, res, next) => {
