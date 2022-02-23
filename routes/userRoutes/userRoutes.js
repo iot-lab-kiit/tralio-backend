@@ -7,22 +7,11 @@ const validateCreateUserPayload = require("../../middlewares/userMiddlewares/val
 routes.post(
   "/register",
   validateCreateUserPayload,
-  UserController.register,
-  (err) => {
-    console.log("Error in creating user");
-  }
+  UserController.register
 );
 
-routes.post("/login", UserController.login, (err) => {
-  console.log("Login error");
-});
-
-routes.post("/refresh-token", refreshJWT, (err) => {
-  console.log("Token Refresh Error");
-});
-
-routes.get("/:id", UserController.userById, (err) => {
-  console.log("Errorrrr");
-});
+routes.post("/login", UserController.login);
+routes.post("/refresh-token", refreshJWT);
+routes.get("/:id", UserController.userById);
 
 module.exports = routes;

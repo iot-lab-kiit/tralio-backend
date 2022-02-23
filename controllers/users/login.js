@@ -6,34 +6,40 @@ const ApiError = require("../../error/ApiError");
 const login = async (req, res, next) => {
   const { username, userEmail, userPassword } = req.body;
 
-  // Todo : Need error handling for mongo query
-  const foundUser = await User.findOne({ username: username });
-  if (!foundUser) foundUser = await User.findOne({ userEmail: userEmail });
+  try {
+    var foundUser = await User.findOne({ username: username });
+    if (!foundUser) foundUser = await User.findOne({ userEmail: userEmail });
 
-  if (!foundUser) {
-    next(ApiError.notFound("User not found"));
-    return;
+    if (!foundUser) {
+      next(ApiError.notFound("User not found"));
+      return;
+    }
+
+    const validPassword = await bcrypt.compare(
+      userPassword,
+      foundUser.userPassword
+    );
+
+    if (!validPassword) {
+      next(ApiError.badRequest("Invalid Password"));
+      return;
+    }
+
+    const token = createJWT(foundUser);
+    res.status(200).json({
+      message: "User Authentication Successfull",
+      user: foundUser,
+      token: token,
+    });
+  } catch (err) {
+    next(
+      ApiError.internalServerError(
+        "DB Query Error or Error in decrypting password"
+      )
+    );
   }
-
-  // Todo : Need error handling for bcrypt
-  const validPassword = await bcrypt.compare(
-    userPassword,
-    foundUser.userPassword
-  );
-
-  if (!validPassword) {
-    next(ApiError.badRequest("Invalid Password"));
-    return;
-  }
-
-  const token = createJWT(foundUser);
-  res.status(200).json({
-    message: "User AUthentication Successfull",
-    user: foundUser,
-    token: token,
-  });
 
   next();
 };
 
-module.exports = { login};
+module.exports = login;

@@ -4,7 +4,7 @@ const ApiError = require("../../error/ApiError");
 const validateCreateUserPayload = async (req, res, next) => {
   const { username, userEmail, userPassword } = req.body;
   if (!username || !userEmail || !userPassword) {
-    next(ApiError.badRequest("Either username or email is missing"));
+    next(ApiError.badRequest("Required data for registration is missing"));
     return;
   }
   try {
@@ -13,7 +13,7 @@ const validateCreateUserPayload = async (req, res, next) => {
     }).then();
 
     // if below error is thrown, then user is not found
-    // If it throws unnecessarily then check await is is there or not
+    // If it throws unnecessarily then check await is is there or not in findUser
     if (findUser != null) {
       next(ApiError.conflict("User already exists"));
       return;
