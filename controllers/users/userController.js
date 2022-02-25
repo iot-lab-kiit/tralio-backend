@@ -4,7 +4,7 @@ const refreshJWT = require("../../helpers/refreshJWT");
 const userById = require("./userById");
 const deleteUser = require("./deleteUser");
 const getAllUser = require("./getAllUser");
-const getAllPosts = require("./getAllPosts");
+const getAllPostsById = require("./getAllPosts");
 
 module.exports = {
   register,
@@ -13,5 +13,5 @@ module.exports = {
   userById,
   deleteUser,
   getAllUser,
-  getAllPosts,
+  getAllPostsById,
 };

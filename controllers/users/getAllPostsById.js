@@ -1,7 +1,7 @@
 const ApiError = require("../../error/ApiError");
 const Post = require("../../models/post/postSchema");
 
-const getAllPosts = async (req, res, next) => {
+const getAllPostsById = async (req, res, next) => {
   try {
     const userId = req.params.id;
 
