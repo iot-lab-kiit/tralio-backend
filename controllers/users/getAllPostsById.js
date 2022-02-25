@@ -16,4 +16,4 @@ const getAllPostsById = async (req, res, next) => {
   }
 };
 
-module.exports = getAllPosts;
+module.exports = getAllPostsById;
