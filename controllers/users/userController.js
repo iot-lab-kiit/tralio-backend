@@ -1,10 +1,10 @@
-const register = require("./register")
-const login = require("./login")
-const refreshJWT = require("../../helpers/refreshJWT")
-const userById = require ("./userById")
-const deleteUser = require("./deleteUser")
-const getAllUser = require("./getAllUser")
-
+const register = require("./register");
+const login = require("./login");
+const refreshJWT = require("../../helpers/refreshJWT");
+const userById = require("./userById");
+const deleteUser = require("./deleteUser");
+const getAllUser = require("./getAllUser");
+const getAllPostsById = require("./getAllPosts");
 
 module.exports = {
   register,
@@ -12,5 +12,6 @@ module.exports = {
   refreshJWT,
   userById,
   deleteUser,
-  getAllUser
-}
+  getAllUser,
+  getAllPostsById,
+};
