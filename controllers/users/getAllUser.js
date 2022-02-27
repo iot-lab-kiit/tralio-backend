@@ -12,7 +12,6 @@ const getAllUser = async (_, res, next) => {
   } catch (err) {
     next(ApiError.internalServerError("Database Query Error."));
   }
-  next();
 };
 
 module.exports = getAllUser;

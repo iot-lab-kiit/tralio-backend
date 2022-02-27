@@ -39,7 +39,6 @@ const register = async (req, res, next) => {
     );
     return;
   }
-  next();
 };
 
 module.exports = register;
