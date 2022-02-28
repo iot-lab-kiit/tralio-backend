@@ -5,6 +5,7 @@ const userById = require("./userById");
 const deleteUser = require("./deleteUser");
 const getAllUser = require("./getAllUser");
 const getPostsByUser = require("./getPostsByUser");
+const updateUser = require("./editUser");
 
 module.exports = {
   register,
@@ -14,4 +15,5 @@ module.exports = {
   deleteUser,
   getAllUser,
   getPostsByUser,
+  updateUser,
 };
