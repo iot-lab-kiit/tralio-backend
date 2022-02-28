@@ -11,6 +11,6 @@ routes.post("/refresh-token", refreshJWT);
 routes.get("/:id", UserController.userById);
 routes.get("/all-users", UserController.getAllUser);
 routes.delete("/:id", UserController.deleteUser);
-routes.get("/:id/posts", UserController.getAllPostsById);
+routes.get("/:id/posts", UserController.getPostsByUser);
 
 module.exports = routes;
