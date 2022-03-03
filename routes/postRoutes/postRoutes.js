@@ -5,7 +5,7 @@ const postRoutes = express.Router();
 
 postRoutes.post('/create', postController.createPost);
 postRoutes.get('/all-posts', postController.getAllPost);
-postRoutes.get('/:user/:slug', postController.getPostByUserSlug);
+postRoutes.get('/getPostByUserSlug', postController.postByUserSlug);
 postRoutes.delete('/(:id)', postController.deletePost);
 postRoutes.get('/:id',postController.postById );
 
