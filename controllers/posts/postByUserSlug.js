@@ -8,7 +8,7 @@ const postByUserSlug = async (req, res, next) => {
     try {
         const username = req.params.username;
         const slug = req.params.slug;
-        const posts = await Post.find({ postedBy: userId, slug: slug });
+        const posts = await Post.find({ postedBy: username, slug: slug });
         if (!posts) {
             next(ApiError.notFound("No Posts Found"));
         }
