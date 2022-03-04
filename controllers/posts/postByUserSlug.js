@@ -1,7 +1,6 @@
 // Write your code for the postByUserSlug controller here.
 // Check for any problem in the code and fix it.
 const Post = require("../../models/post/postSchema");
-const User = require("../../models/user/userSchema");
 const ApiError = require("../../error/ApiError");
 
 const postByUserSlug = async (req, res, next) => {
