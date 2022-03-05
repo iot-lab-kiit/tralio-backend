@@ -1,6 +1,6 @@
 const User = require("../../models/user/userSchema");
 const bcrypt = require("bcrypt");
-const createJWT = require("../../helpers/createJWT");
+const {createJWT} = require("../../helpers/createJWT");
 const ApiError = require("../../error/ApiError");
 
 const register = async (req, res, next) => {
