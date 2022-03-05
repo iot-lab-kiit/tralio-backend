@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const User = require("../../models/user/userSchema");
-const createJWT = require("../../helpers/createJWT");
+const {createJWT, createRefreshJWT} = require("../../helpers/createJWT");
 const ApiError = require("../../error/ApiError");
 
 const login = async (req, res, next) => {
@@ -25,11 +25,12 @@ const login = async (req, res, next) => {
       return;
     }
 
-    const token = createJWT(foundUser);
+    const access_token = createJWT(foundUser);
+    const refresh_token = createRefreshJWT(foundUser);
     res.status(200).json({
       message: "User Authentication Successfull",
       user: foundUser,
-      token: token,
+      token: {access_token, refresh_token},
     });
   } catch (err) {
     next(
@@ -38,7 +39,6 @@ const login = async (req, res, next) => {
       )
     );
   }
-
   next();
 };
 
