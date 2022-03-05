@@ -1,11 +1,11 @@
-// const user = require("../models/user/userSchema");
 const jwt = require("jsonwebtoken");
 const redis_client = require('../redis_connect');
+const ApiError = require('../error/ApiError')
 
 const verifyToken = (req, res, next) => {
   const bearerHeader = req.headers["authorization"];
   if (!bearerHeader || !bearerHeader.startsWith("Bearer")) {
-    console.log("NO JWT TOKEN");
+    next(ApiError.unauthorized("Not authorized"))
   } else {
     const bearerToken = bearerHeader.split(" ")[1];
     try {
@@ -16,7 +16,7 @@ const verifyToken = (req, res, next) => {
       };
       next();
     } catch (err) {
-      res.status(400).json({ message: "Token Error" });
+      next(ApiError.badRequest("User not allowed"))
     }
   }
 };
@@ -24,7 +24,7 @@ const verifyToken = (req, res, next) => {
 const verifyRefreshToken = async (req,res,next)=>{
   const refresh_token = req.body.token;
   if(!refresh_token){
-    return res.status(401).json({message : "Invalid request"})
+    next(ApiError.badRequest("Invalid request"))
   }
   try {
     const payload = jwt.verify(refresh_token, process.env.REFRESH_SECRET_KEY)
@@ -34,14 +34,14 @@ const verifyRefreshToken = async (req,res,next)=>{
       };
       const userId = payload._id;
       redis_client.get(userId, (err, result)=>{
-        if(!result) return res.status(401).json({message : "Invalid request. Token is not in cache"});
+        if(!result) 
+        next(ApiError.notFound("User not found"));
         if(result !== refresh_token)
-          return res.status(401).json({message : "Invalid request. Token is not same"});
+        next(ApiError.unauthorized("Not valid"));
         next();
     })
   } catch (error) {
-    return res.status(401).json({message :  `Session is invalid`})
+    next(ApiError.unauthorized("Session expired"))
   }
 }
-
 module.exports = {verifyToken, verifyRefreshToken};

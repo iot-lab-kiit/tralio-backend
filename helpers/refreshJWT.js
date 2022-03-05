@@ -1,4 +1,5 @@
 const { createJWT, createRefreshJWT } = require("./createJWT");
+const ApiError = require('../error/ApiError')
 
 const refreshJWT = async (req, res, next) => {
   try {
@@ -12,7 +13,7 @@ const refreshJWT = async (req, res, next) => {
     });
     next();
   } catch (error) {
-    return res.status(500).json({ message: "error in refreshing token" });
+    next(ApiError.internalServerError("Cannot refresh token"))
   }
 };
 
