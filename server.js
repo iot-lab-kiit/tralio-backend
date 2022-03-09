@@ -21,8 +21,8 @@ app.use(errorHandler);
 
 connectDB(process.env.MONGO_URI);
 
-app.get("/", (req, res) => {
-  res.send("You have reached the tralio server");
+app.get("/", (_, res) => {
+  res.send(200).json({"Success": "You have reached the tralio server"});
 });
 
 app.get("/dbstatus", (req, res) => {
