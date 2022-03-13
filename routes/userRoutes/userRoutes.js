@@ -8,9 +8,9 @@ routes.post("/register", validateCreateUserPayload, UserController.register);
 
 routes.post("/login", UserController.login);
 routes.post("/refresh-token", refreshJWT);
-routes.get("id/:id", UserController.userById);
+routes.get("/user-by-id/:id", UserController.userById);
 routes.get("/all-users", UserController.getAllUser);
 routes.delete("/:id", UserController.deleteUser);
-routes.get("/:id/posts", UserController.getPostsByUser);
+routes.get("/post-by-user/:id/posts", UserController.getPostsByUser);
 
 module.exports = routes;
