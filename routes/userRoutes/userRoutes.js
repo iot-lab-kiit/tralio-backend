@@ -13,8 +13,6 @@ routes.get("/all-users", UserController.getAllUser);
 routes.delete("/:id", UserController.deleteUser);
 routes.get("/:id/posts", UserController.getPostsByUser);
 
-routes.get("/recentPost", UserController.recentPost);
-routes.get("/recentComments", UserController.recentComments);
-routes.get("/recentLikes", UserController.recentLikes);
-
+routes.get("/recentPost", UserController.recent.getRecentPost);
+routes.get("/recentComments", UserController.recent.getRecentComments);
 module.exports = routes;

@@ -5,9 +5,8 @@ const userById = require("./userById");
 const deleteUser = require("./deleteUser");
 const getAllUser = require("./getAllUser");
 const getPostsByUser = require("./getPostsByUser");
-const recentPost=require("./getActivities/recentPosts")
-const recentComments=require("./getActivities/recentComments")
-const recentLikes=require("./getActivities/recentLikes")
+const recent=require("./getActivitiesOfUser")
+
 
 module.exports = {
   register,
@@ -17,7 +16,5 @@ module.exports = {
   deleteUser,
   getAllUser,
   getPostsByUser,
-  recentPost,
-  recentComments,
-  recentLikes
+  recent
 };
