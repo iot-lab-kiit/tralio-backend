@@ -10,7 +10,8 @@ const editPost = async (req, res, next) => {
   });
 
   if (!post) {
-    return next(ApiError.notFound(`No post with id : ${postId}`, 404));
+    next(ApiError.notFound(`No post with id : ${postId}`));
+    return;
   }
 
   res.status(200).json({ post });
