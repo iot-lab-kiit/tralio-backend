@@ -7,5 +7,6 @@ postRoutes.post('/create', postController.createPost);
 postRoutes.get('/all-posts', postController.getAllPost);
 postRoutes.delete('/:id', postController.deletePost);
 postRoutes.get('id/:id',postController.postById );
+postRoutes.patch('/edit-post/:id', postController.postEdit.postEdit);
 
 module.exports = postRoutes;
