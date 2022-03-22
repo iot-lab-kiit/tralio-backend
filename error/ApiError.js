@@ -1,3 +1,4 @@
+const { StatusCodes } = require("http-status-codes");
 class ApiError {
   constructor(message, code) {
     this.message = message;
@@ -31,7 +32,10 @@ class ApiError {
   static internalServerError(message) {
     return new ApiError(message, 500);
   }
+
+  static unauthenticated(message) {
+    return new ApiError(message, 403);
+  }
 }
 
 module.exports = ApiError;
-
