@@ -34,3 +34,17 @@ const authenticateUser = async (req, res, next) => {
     next(ApiError.forbidden("Authentication Invalid"));
   }
 };
+
+const authorizePermissions = (...roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      next(ApiError.forbidden("Access not Allowed to this route"));
+    }
+    next();
+  };
+};
+
+module.exports = {
+  authenticateUser,
+  authorizePermissions,
+};
