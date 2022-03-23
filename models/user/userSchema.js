@@ -43,6 +43,12 @@ const userSchema = new mongoose.Schema({
   userCountry: {
     type: String,
   },
+
+  role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user",
+  },
 });
 
 userSchema.pre("save", async function () {

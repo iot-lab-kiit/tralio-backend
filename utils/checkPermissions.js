@@ -1,9 +1,11 @@
-const ApiError = require("../../error/ApiError");
+const ApiError = require("../error/ApiError");
 
-const checkPermissions = (requestUser, resourceUserId) => {
+const chechPermissions = (requestUser, resourceUserId) => {
   if (requestUser.role === "admin") return;
   if (requestUser.userId === resourceUserId.toString()) return;
-  next(ApiError.unauthorized("You do not have the role to access this route."));
+  throw new CustomError.UnauthorizedError(
+    "Not authorized to access this route"
+  );
 };
 
-module.exports = checkPermissions;
+module.exports = chechPermissions;
