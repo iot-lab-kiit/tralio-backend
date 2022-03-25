@@ -11,10 +11,10 @@ const create = async (req, res) => {
   if (!portfolioData.name || !portfolioData.email) {
     next(ApiError.badRequest("Please Enter Data for All Fields"));
   }
-
-  const portfolio = await Portfolio.create(portfolioData);
-
-  if (!portfolio) {
+  var portfolio;
+  try {
+    portfolio = await Portfolio.create(portfolioData);
+  } catch (err) {
     next(ApiError.internalServerError("Database Error"));
   }
 
