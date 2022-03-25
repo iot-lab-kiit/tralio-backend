@@ -8,5 +8,6 @@ Route.route("/get-single-portfolio/:id").get(
   portfolioController.getSinglePortfolio
 ); //need middleware to allow only admins and the user to access this route
 Route.route("/update-portfolio/:id").post(portfolioController.updatePortfolio);
+Route.route("/delete-portfolio/:id").post(portfolioController.deletePortfolio);
 
 module.exports = Route;
