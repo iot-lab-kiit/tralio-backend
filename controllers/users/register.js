@@ -4,6 +4,8 @@ const createJWT = require("../../helpers/createJWT");
 const ApiError = require("../../error/ApiError");
 
 const register = async (req, res, next) => {
+  // #swagger.tags = ['User']
+  // #swagger.description = 'Endpoint para obter um usuário.'
   const userPayload = req.body;
 
   try {
