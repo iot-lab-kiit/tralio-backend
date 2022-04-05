@@ -28,7 +28,7 @@ const register = async (req, res, next) => {
           next(ApiError.conflict("User already exists."));
           return;
         }
-        next(ApiError.failedDependency("Error while creating user"));
+        next(ApiError.failedDependency(err.message));
         return;
       });
   } catch (err) {

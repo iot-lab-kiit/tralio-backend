@@ -43,13 +43,19 @@ const userSchema = new mongoose.Schema({
   userCountry: {
     type: String,
   },
+
+  role: {
+    type: String,
+    enum: ["admin", "user"],
+    default: "user",
+  },
 });
 
-userSchema.pre("save", async function () {
-  if (!this.isModified("password")) return;
-  const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
-  this.password = await bcrypt.hash(this.password, salt);
-});
+// userSchema.pre("save", async function () {
+//   if (!this.isModified("password")) return;
+//   const salt = await bcrypt.genSalt(parseInt(process.env.SALT_ROUNDS));
+//   this.password = await bcrypt.hash(this.password, salt);
+// });
 
 userSchema.methods.comparePassword = async function (candidatePassword) {
   const isMatch = await bcrypt.compare(candidatePassword, this.password);

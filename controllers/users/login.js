@@ -1,10 +1,13 @@
-const bcrypt = require("bcrypt");
 const User = require("../../models/user/userSchema");
-const createJWT = require("../../helpers/createJWT");
+const bcrypt = require("bcrypt");
 const ApiError = require("../../error/ApiError");
+const { attachCookiesToResponse, createTokenUser } = require("../../utils");
 
 const login = async (req, res, next) => {
   const { username, userEmail, userPassword } = req.body;
+
+  if (!userEmail || !userPassword)
+    next(ApiError.BadRequest("Please provide both email and password"));
 
   try {
     var foundUser = await User.findOne({ username: username });
@@ -25,18 +28,16 @@ const login = async (req, res, next) => {
       return;
     }
 
-    const token = createJWT(foundUser);
+    const token = createTokenUser(foundUser);
+    attachCookiesToResponse({ res, user: token });
+
     res.status(200).json({
       message: "User Authentication Successfull",
       user: foundUser,
       token: token,
     });
   } catch (err) {
-    next(
-      ApiError.internalServerError(
-        "DB Query Error or Error in decrypting password"
-      )
-    );
+    next(ApiError.internalServerError(err.message));
   }
 
   next();
