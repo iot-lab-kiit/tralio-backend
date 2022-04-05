@@ -1,13 +1,23 @@
 const User = require("../../models/user/userSchema");
 const bcrypt = require("bcrypt");
 const ApiError = require("../../error/ApiError");
-const { attachCookiesToResponse, createTokenUser } = require("../../utils");
+const jwt = require("jsonwebtoken");
+const { attachCookiesToResponse, userTokenInfo } = require("../../utils");
+
+const createJWT = ({ payload }) => {
+  const token = jwt.sign(payload, process.env.JWT_SECRET);
+  return token;
+};
+
+const isTokenValid = (token) => jwt.verify(token, process.env.JWT_SECRET);
 
 const login = async (req, res, next) => {
   const { username, userEmail, userPassword } = req.body;
 
-  if (!userEmail || !userPassword)
+  if (!userEmail || !userPassword) {
     next(ApiError.BadRequest("Please provide both email and password"));
+    return;
+  }
 
   try {
     var foundUser = await User.findOne({ username: username });
@@ -28,13 +38,13 @@ const login = async (req, res, next) => {
       return;
     }
 
-    const token = createTokenUser(foundUser);
-    attachCookiesToResponse({ res, user: token });
+    const tokenInfo = userTokenInfo(foundUser);
+    attachCookiesToResponse({ res, user: tokenInfo });
 
     res.status(200).json({
       message: "User Authentication Successfull",
       user: foundUser,
-      token: token,
+      token: tokenInfo,
     });
   } catch (err) {
     next(ApiError.internalServerError(err.message));
