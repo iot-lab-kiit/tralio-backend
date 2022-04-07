@@ -12,6 +12,7 @@ const sendOtp = async (req, res, next) => {
 
     if(!email) {
         next(ApiError.badRequest("Email Missing"));
+        return
     }
     const payload = {
         id: id,
