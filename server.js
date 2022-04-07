@@ -5,6 +5,7 @@ const connectDB = require("./db/connectDB");
 const userRoutes = require("./routes/userRoutes/userRoutes");
 const postRoutes = require("./routes/postRoutes/postRoutes");
 const portfolioRoutes = require("./routes/portfolioRoutes/portfolioRoutes");
+const emailRoutes = require("./routes/emailRoutes");
 const errorHandler = require("./error/errorHandler");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -21,6 +22,7 @@ const port = process.env.PORT || 8000;
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/posts", postRoutes);
 app.use("/api/v1/portfolio", portfolioRoutes);
+app.use("/api/v1/emails", emailRoutes);
 app.use(errorHandler);
 
 connectDB(process.env.MONGO_URI);
