@@ -5,13 +5,15 @@ const userById = require("./userById");
 const deleteUser = require("./deleteUser");
 const getAllUser = require("./getAllUser");
 const getPostsByUser = require("./getPostsByUser");
+const editUser = require("./editUser");
 
 module.exports = {
-  register,
-  login,
-  refreshJWT,
-  userById,
-  deleteUser,
-  getAllUser,
-  getPostsByUser,
+    register,
+    login,
+    refreshJWT,
+    editUser,
+    userById,
+    deleteUser,
+    getAllUser,
+    getPostsByUser,
 };

@@ -1,4 +1,4 @@
-const createPost = require("./post");
+const createPost = require("./createPost");
 const getAllPost = require("./getAllPost");
 const deletePost = require("./deletePostByID");
 const postById = require("./postById");
