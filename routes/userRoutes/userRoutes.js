@@ -13,4 +13,6 @@ routes.get("/all-users", UserController.getAllUser);
 routes.delete("/:id", UserController.deleteUser);
 routes.get("/post-by-user/:id/posts", UserController.getPostsByUser);
 
+routes.get("/recentPost", UserController.recent.getRecentPost);
+routes.get("/recentComments", UserController.recent.getRecentComments);
 module.exports = routes;
