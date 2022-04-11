@@ -1,17 +1,17 @@
 const axios = require("axios");
 const ApiError = require("../../error/ApiError");
-const verifyOtp = async (req, res, next) => {
+const verifyOtp = async(req, res, next) => {
     const userPayload = req.body;
 
-        const { transid, email, otp } = userPayload;
-        const emailApiUrl =
-            "https://iot-email-service.herokuapp.com/api/v1/verify-email";
-        const verifyEmailPayload = {
-            email: email,
-            otp: otp,
-            transid: transid,
-        };
-        try {
+    const { transid, userEmail, otp } = userPayload;
+    const emailApiUrl =
+        "https://iot-email-service.herokuapp.com/api/v1/verify-email";
+    const verifyEmailPayload = {
+        email: userEmail,
+        otp: otp,
+        transid: transid,
+    };
+    try {
         const response = await axios({
             url: emailApiUrl,
             method: "POST",
@@ -20,7 +20,7 @@ const verifyOtp = async (req, res, next) => {
                 "Content-Type": "application/json",
             },
             data: JSON.stringify(verifyEmailPayload),
-            validateStatus: () => true
+            validateStatus: () => true,
         });
         if (response.status !== 200) {
             next(ApiError.badRequest("Wrong OTP"));
