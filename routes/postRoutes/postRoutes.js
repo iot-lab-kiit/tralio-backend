@@ -4,8 +4,8 @@ const postRoutes = express.Router();
 
 postRoutes.post("/create", postController.createPost);
 postRoutes.get("/all-posts", postController.getAllPost);
-postRoutes.delete("/:id", postController.deletePost);
-postRoutes.patch("/:id/edit-post", postController.editPost);
-postRoutes.get("id/:id", postController.postById);
+postRoutes.delete("/delete/:id", postController.deletePost);
+postRoutes.patch("/edit-post/:id", postController.editPost);
+postRoutes.get("/post-by-id/:id", postController.postById);
 
 module.exports = postRoutes;
