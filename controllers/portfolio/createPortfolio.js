@@ -3,7 +3,6 @@ const ApiError = require("../../error/ApiError");
 
 const create = async(req, res, next) => {
     const portfolioData = req.body;
-
     if (!portfolioData) {
         next(ApiError.badRequest("Please Enter Details"));
         return;
@@ -20,7 +19,7 @@ const create = async(req, res, next) => {
         next(ApiError.internalServerError("Database Error"));
         return;
     }
-
+    console.log(portfolio);
     res.status(201).json(portfolio);
 };
 
