@@ -17,10 +17,11 @@ const register = async (req, res, next) => {
             .save()
             .then((user) => {
                 const tokenInfo = userTokenInfo(userPayload);
-                attachCookiesToResponse({ res, user: tokenInfo });
+                const access_token = attachCookiesToResponse({ res, user: tokenInfo });
                 res.status(201).json({
                     message: "User created successfully",
                     user: user,
+                    access_token: access_token,
                 });
             })
             .catch((err) => {

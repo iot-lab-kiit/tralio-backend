@@ -24,6 +24,8 @@ const attachCookiesToResponse = ({ res, user }) => {
     httpOnly: true,
     maxAge: new Date(Date.now() + oneMonth),
   });
+
+  return accessTokenJWT;
 };
 
 module.exports = {

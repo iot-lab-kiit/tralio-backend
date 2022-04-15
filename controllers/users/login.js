@@ -39,12 +39,13 @@ const login = async (req, res, next) => {
     }
 
     const tokenInfo = userTokenInfo(foundUser);
-    attachCookiesToResponse({ res, user: tokenInfo });
+    const access_token = attachCookiesToResponse({ res, user: tokenInfo });
 
     res.status(200).json({
       message: "User Authentication Successfull",
       user: foundUser,
       token: tokenInfo,
+      access_token: access_token
     });
   } catch (err) {
     next(ApiError.internalServerError(err.message));
