@@ -4,7 +4,7 @@ const Route = express.Router();
 
 Route.get("/get-all-portfolio", portfolioController.getAllPortfolio); //need middleware to allow only admins to access this route
 Route.get(
-    "/get-single-portfolio/:username",
+    "/get-single-portfolio",
     portfolioController.getSinglePortfolio
 );
 Route.delete("/delete-portfolio/:id", portfolioController.deletePortfolio);

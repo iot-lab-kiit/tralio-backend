@@ -1,11 +1,13 @@
 const Portfolio = require("../../models/portfolio/portfolioSchema");
 const ApiError = require("../../error/ApiError");
+const User = require("../../models/user/userSchema");
 
 const getSinglePortfolio = async(req, res, next) => {
     try {
-        const portfolioId = req.params.id;
-
-        const portfolio = await Portfolio.findOne({ _id: portfolioId });
+        
+        const username = req.query.username;
+        const userData = await User.findOne({ username: username });
+        const portfolio = await Portfolio.findOne({ postedBy: userData._id });
 
         if (!portfolio) {
             next(ApiError.notFound("Portfolio with current id not found"));
