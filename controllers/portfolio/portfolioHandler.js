@@ -18,7 +18,7 @@ const portfolioHandler = async(req, res, next) => {
             const fullData = await new Portfolio(portfolioData);
             fullData.save().then((portfolio) => {
                 res.status(200).json({
-                    message: "Portfolio create sucessfully",
+                    message: "Portfolio create successfully",
                     portfolio: portfolio,
                 });
             });
