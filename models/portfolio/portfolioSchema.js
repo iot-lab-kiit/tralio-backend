@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const portfolioSchema = new mongoose.Schema({
-    profile: {
+    Profile: [{
         firstName: {
             type: "String",
             required: [true, "Please Provide First Name."],
@@ -14,8 +14,8 @@ const portfolioSchema = new mongoose.Schema({
             type: "String",
             required: [true, "Please Provide Bio"],
         },
-    },
-    education: [{
+    }, ],
+    Educations: [{
         degree: {
             type: String,
             required: [true, "Please Provide Degree"],
@@ -36,7 +36,7 @@ const portfolioSchema = new mongoose.Schema({
             type: "String",
         },
     }, ],
-    skills: [{
+    Skills: [{
         name: {
             type: "String",
         },
@@ -47,7 +47,7 @@ const portfolioSchema = new mongoose.Schema({
             type: "String",
         },
     }, ],
-    projects: [{
+    Projects: [{
         title: {
             type: "String",
         },
@@ -55,7 +55,7 @@ const portfolioSchema = new mongoose.Schema({
             type: "String",
         },
     }, ],
-    experiences: [{
+    Experiences: [{
         title: {
             type: "String",
         },
