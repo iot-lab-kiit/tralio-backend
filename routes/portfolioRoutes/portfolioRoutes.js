@@ -2,14 +2,12 @@ const express = require("express");
 const portfolioController = require("../../controllers/portfolio/portfolioController");
 const Route = express.Router();
 
-Route.route("/register").post(portfolioController.createPortfolio);
-Route.route("/get-all-portfolio").get(portfolioController.getAllPortfolio); //need middleware to allow only admins to access this route
-Route.route("/get-single-portfolio/:id").get(
+Route.get("/get-all-portfolio", portfolioController.getAllPortfolio); //need middleware to allow only admins to access this route
+Route.get(
+    "/get-single-portfolio/:username",
     portfolioController.getSinglePortfolio
-); //need middleware to allow only admins and the user to access this route
-Route.route("/update-portfolio/:id").patch(portfolioController.updatePortfolio);
-Route.route("/delete-portfolio/:id").delete(
-    portfolioController.deletePortfolio
 );
+Route.delete("/delete-portfolio/:id", portfolioController.deletePortfolio);
+Route.put("/register-and-update", portfolioController.portfolioHandler);
 
 module.exports = Route;

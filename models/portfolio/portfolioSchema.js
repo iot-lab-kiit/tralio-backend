@@ -102,6 +102,10 @@ const portfolioSchema = new mongoose.Schema({
             type: "String",
         },
     }, ],
+    postedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+    },
 });
 
 module.exports = mongoose.model("Portfolio", portfolioSchema);
