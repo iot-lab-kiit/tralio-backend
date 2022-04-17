@@ -1,107 +1,74 @@
 const mongoose = require("mongoose");
 
 const portfolioSchema = new mongoose.Schema({
-    profile: {
+    Profile: {
         firstName: {
             type: "String",
-            required: [true, "Please Provide First Name."],
         },
         lastName: {
             type: "String",
-            required: [true, "Please Provide Last Name."],
         },
         bio: {
             type: "String",
-            required: [true, "Please Provide Bio"],
+            
         },
     },
-    education: [{
-        degree: {
-            type: String,
-            required: [true, "Please Provide Degree"],
-        },
-        school: {
-            type: "String",
-        },
-        city: {
-            type: "String",
-        },
-        country: {
-            type: "String",
-        },
-        startDate: {
-            type: "String",
-        },
-        endDate: {
-            type: "String",
-        },
-    }, ],
-    skills: [{
-        name: {
-            type: "String",
-        },
-        desc: {
-            type: "String",
-        },
-        level: {
-            type: "String",
-        },
-    }, ],
-    projects: [{
-        title: {
-            type: "String",
-        },
-        desc: {
-            type: "String",
-        },
-    }, ],
-    experiences: [{
-        title: {
-            type: "String",
-        },
-        desc: {
-            type: "String",
-        },
-    }, ],
+    Educations : [
+        {
+            city: {type: "String"},
+            country: {type: "String"},
+            school: {type: "String"},
+            degree: {type: "String"},
+            startDate:{type: "String"},
+            endDate:{type: "String"}
+        }
+    ],
+    Skills : [
+        {
+            name: {type: "String"},
+            level: {type: "String"},
+            desc: {type: "String"}
+        }
+    ],
+    Projects: [
+        {
+            title: {type: "String"},
+            desc: {type: "String"},
+        }
+    ],
+    Experience: [
+        {
+            title: {type: "String"},
+            desc: {type: "String"},
+        }   
+    ],
+    Courses: [
+        {
+            title: {type: "String"},
+            institution: {type: "String"},
+        }
+    ],
+    Organisations: [
+        {
+            name: {type: "String"},
+            position: {type: "String"},
+            city: {type: "String"},
+            country: {type: "String"},
+        }
+    ],
+    Interests: [
+        {
+            name: {type: "String"},
+            desc: {type: "String"}
+        }
+    ],
+    Awards: [
+        {
+            title: {type: "String"},
+            issuer: {type: "String"},
+        }
+    ],
 
-    courses: [{
-        title: {
-            type: "String",
-        },
-        institute: {
-            type: "String",
-        },
-    }, ],
-    organizations: [{
-        name: {
-            type: "String",
-        },
-        position: {
-            type: "String",
-        },
-        city: {
-            type: "String",
-        },
-        country: {
-            type: "String",
-        },
-    }, ],
-    interests: [{
-        name: {
-            type: "String",
-        },
-        desc: {
-            type: "String",
-        },
-    }, ],
-    awards: [{
-        name: {
-            type: "String",
-        },
-        issuer: {
-            type: "String",
-        },
-    }, ],
     postedBy: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
