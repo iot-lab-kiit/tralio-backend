@@ -11,7 +11,7 @@ const editUser = async(req, res, next) => {
 
     if (!user) {
         next(ApiError.notFound(`No post with id : ${userId}`));
-        return;
+        return;yar
     }
 
     res.status(200).json({ user });
