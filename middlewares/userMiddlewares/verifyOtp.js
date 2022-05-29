@@ -5,7 +5,7 @@ const verifyOtp = async(req, res, next) => {
 
     const { transid, userEmail, otp } = userPayload;
     const emailApiUrl =
-        "https://iot-email-service.herokuapp.com/api/v1/verify-email";
+        "https://email-authenticator.herokuapp.com/api/v1/verify-email";
     const verifyEmailPayload = {
         email: userEmail,
         otp: otp,
